@@ -2,6 +2,7 @@ import NextAuth from 'next-auth'
 import GitHubProvider from "next-auth/providers/github";
 import mongoose from 'mongoose';
 import User from '@/models/User';
+import Payment from '@/models/Payment';
 
 export const authoptions = NextAuth({
     providers: [
@@ -29,14 +30,14 @@ export const authoptions = NextAuth({
                         // ✅ Create a new user
                         const newUser = new User({
                             email: user.email,
-                            name: user.name
+                            name: user.name,
+                            profilepic:user.image
                         });
                         await newUser.save();
                         user.name = newUser.name; // ✅ Use `name` instead of `username`
                     } else {
                         user.name = currentUser.name; // ✅ Assign name correctly
                     }
-
                     return true; // Allow sign-in
                 } catch (error) {
                     console.error("Sign-in error:", error);
@@ -45,7 +46,8 @@ export const authoptions = NextAuth({
             }
             return true;
         }
-    }
+    },
+    
 })
 
 export { authoptions as GET, authoptions as POST }

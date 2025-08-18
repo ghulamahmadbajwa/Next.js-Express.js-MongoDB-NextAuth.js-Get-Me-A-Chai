@@ -8,6 +8,8 @@ const UserSchema = new Schema(
         email: { type: String, required: true, unique: true },
         profilepic: { type: String },
         coverpic: { type: String },
+        stripeId: { type: String }, // Default Stripe Customer ID
+        stripeSecretKey: { type: String} // Default Stripe secret key
     },
     { timestamps: true } // This automatically manages createdAt & updatedAt
 );

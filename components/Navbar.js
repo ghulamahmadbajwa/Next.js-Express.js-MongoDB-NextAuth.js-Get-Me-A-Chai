@@ -27,12 +27,12 @@ const Navbar = () => {
       </Link>
 
       {/* Navigation */}
-      <div className="relative" ref={dropdownRef}>
+      <div className="relative z-50" ref={dropdownRef}>
         {session ? (
           <>
             {/* User Email Button */}
             <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
+              onClick={() => setDropdownOpen(!dropdownOpen)} onBlur={()=>{setTimeout(() => {setDropdownOpen(!dropdownOpen)}, 300);}}
               className="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-2 rounded-lg shadow-md hover:from-blue-600 hover:to-blue-800 transition duration-300 flex items-center gap-2"
             >
               {session.user?.email || "User"}
