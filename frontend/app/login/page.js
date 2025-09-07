@@ -1,27 +1,37 @@
 "use client";
+
+// === Imports ===
+// Core React and hooks for managing lifecycle effects
 import React, { useEffect } from 'react';
+// NextAuth hook for accessing session data and triggering sign-in
 import { useSession, signIn } from "next-auth/react";
+// Next.js hook for programmatic navigation
 import { useRouter } from 'next/navigation';
 
+// === Login Page Component ===
+// Renders a login page with social login buttons and redirects authenticated users to the dashboard
 const Page = () => {
-  const { data: session } = useSession();
-  const router = useRouter();
+  // === Hooks ===
+  const { data: session } = useSession(); // Get session data to check authentication status
+  const router = useRouter(); // Initialize router for navigation
 
-  // Redirect to dashboard if the user is already logged in
+  // === Effect: Redirect Authenticated Users ===
+  // Redirects to the dashboard if the user is already logged in
   useEffect(() => {
     if (session) {
-      router.push('/dashboard');
+      router.push('/dashboard'); // Navigate to dashboard if session exists
     }
-  }, [session, router]);
+  }, [session, router]); // Re-run effect when session or router changes
 
+  // === Render Login Page UI ===
   return (
     <div className="min-h-[85.3vh] flex flex-col justify-center items-center text-white">
-      {/* Heading */}
+      {/* === Heading === */}
       <h1 className="my-10 text-4xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">
         Your Fans Are Waiting - Log In to Get Started!
       </h1>
 
-      {/* Social Login Buttons */}
+      {/* === Social Login Buttons === */}
       <div className="w-full max-w-md p-6 rounded-lg">
         <div className="flex flex-col gap-4">
           {/* Google Button */}
@@ -111,8 +121,10 @@ const Page = () => {
             <span>Continue with Twitter</span>
           </button>
 
+          {/* GitHub Button */}
           <button
-            className="flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md w-full px-6 py-3 text-sm font-medium text-gray-800 hover:bg-gray-100 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" onClick={() => { signIn("github") }}
+            className="flex items-center justify-center bg-white border border-gray-300 rounded-lg shadow-md w-full px-6 py-3 text-sm font-medium text-gray-800 hover:bg-gray-100 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+            onClick={() => { signIn("github") }} // Trigger GitHub sign-in
           >
             <svg
               className="h-6 w-6 mr-2"
@@ -128,11 +140,11 @@ const Page = () => {
             </svg>
             <span>Continue with Github</span>
           </button>
-
         </div>
       </div>
     </div>
   );
 };
 
+// === Export ===
 export default Page;
