@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-yellow-700 text-white flex justify-between items-center h-16 px-6 border-b border-[#ffffff33]">
-      
+
       {/* -------------------------
           Logo Section
           ------------------------- */}
@@ -40,14 +40,14 @@ const Navbar = () => {
             {/* User Button to toggle dropdown */}
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              onBlur={() => { 
-                setTimeout(() => { 
-                  setDropdownOpen(!dropdownOpen) 
+              onBlur={() => {
+                setTimeout(() => {
+                  setDropdownOpen(!dropdownOpen)
                 }, 300); // Small delay to allow click inside dropdown before closing
               }}
               className="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-2 rounded-lg shadow-md hover:from-blue-600 hover:to-blue-800 transition duration-300 flex items-center gap-2"
             >
-              {session.user?.email || "User / صارف"} {/* Show email or fallback text */}
+              "User / صارف"  {/* {session.user?.email || "User / صارف"} Show email or fallback text */}
               {/* Down arrow icon */}
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"></path>
